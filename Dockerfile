@@ -14,9 +14,11 @@ RUN npm install
 # Copying the whole application into the working directory
 COPY . /app
 
-EXPOSE 3000
+# Exposing the container 3000 port into the computer's port
+EXPOSE 80
 
-# Why not RUN node app.mjs? because that instruction runs everytime the image is
+# Why not 'RUN node app.mjs'? because that instruction runs everytime the image is
 # created
 # So with CMD this runs everytime we start a container
 CMD [ "node", "app.mjs"]
+# This command will keep the container running until it is stopped
