@@ -113,3 +113,22 @@ docker ps -a
 ```
 
 By listing all the containers you'll see that the container that you ran is nowhere to be found.
+
+### How do we copy a file from/into a running container?
+
+```bash
+docker cp dummy/. <container-name>:/<filename>
+docker cp <container-name>:/<filename> dummy
+```
+
+Brokendown:
+
+```bash
+docker cp <source> <destination>
+```
+
+Something to hightlight is that the `<container-name>:/` resembles the windows `C:/` root directory.
+
+- Can we update a code to avoid building again the images?
+- Yes, but it's not recommended since it's error prone and.
+- And in case you're wondering you can't replace a file which is currently running.
