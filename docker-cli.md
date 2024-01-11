@@ -19,9 +19,10 @@ docker images
 ```
 
 Can be analyzed
+This command outputs all the configuration properties this image has (including the layers).
 
 ```bash
-docker images inspect
+docker image inspect <image-id>
 ```
 
 Can be removed
@@ -65,7 +66,7 @@ docker start <container-name>
 
 ### Dettached and attached modes
 
-Attached simply listens to the terminal output, whilst dettached don't.
+Attached simply listens to the terminal output, whilst dettached doesn't.
 
 ```bash
 docker run -p 8000:80 -d <container-name>
@@ -102,3 +103,13 @@ docker start -a -i <container-name>
 ```
 
 - When the program is finished so does the container.
+
+### How can we remove a container when it's finished?
+
+```bash
+docker run -p 3000:80 -d --rm <container-name> # Deletes the container as well
+docker stop <container-name>
+docker ps -a
+```
+
+By listing all the containers you'll see that the container that you ran is nowhere to be found.
