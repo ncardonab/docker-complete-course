@@ -151,6 +151,8 @@ COPY . /app
 
 - Images are blueprints that contains the code and environment of the application (tools, dependencies, variables, etc)
 
+- Are either created via Dockerfile or pulled from the container registry
+
 - Images are read-only
 
 - From which we can create containers
@@ -176,5 +178,3 @@ An isolated unit of software which is based on an image. A running instance of t
 ### What are "Layers" in the context of images?
 
 Every instruction in an image creates a cacheable layer - layers help with image re-building and sharing, thus saving time.
-
-<p></p>
