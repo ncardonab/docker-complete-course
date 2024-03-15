@@ -1,0 +1,47 @@
+version: "3.8"
+
+services:
+  goals-db:
+    image: "mongo"
+    volumes:
+      - db-vol:/data/db
+    # environment:
+    #   MONGO_INITDB_ROOT_USERNAME: max
+    #   MONGO_INITDB_ROOT_PASSWORD: secret
+    # - MONGO_INITDB_ROOT_USERNAME=max
+    env_file:
+      - ./env/mongo.env
+
+  goals-api:
+    build: ./backend
+    # build:
+    #   context: ./backend
+    #   dockerfile: Dockerfile
+    #   args:
+    #     some-arg: 1
+    volumes:
+      - goals-app-vol:/app/logs
+      - ./backend:/app
+      - /app/node_modules
+    env_file:
+      - ./env/goals-api.env
+    ports:
+      - "80:80"
+    depends_on:
+      - goals-db
+
+  goals-app:
+    build: ./frontend
+    volumes:
+      - ./frontend/src:/app/src
+      - /app/node_modules
+    ports:
+      - "3000:3000"
+    stdin_open: true
+    tty: true
+    depends_on:
+      - goals-api
+
+volumes:
+  db-vol:
+  goals-app-vol:
